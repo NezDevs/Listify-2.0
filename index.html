@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <button class="btn toggle-btn" id="toggle-sidebar"><i class="fa fa-bars"></i></button>
+    <div class="sidebar" id="sidebar">
+        <div class="menu">
+            <a href="#" class="home active" data-section="home">Home</a>
+        </div>
+        <div class="private">
+            <h3>To-Do Lists</h3>           
+            <div class="folder">
+                <a href="#" class="life" data-section="life">Life</a>
+                <a href="#" class="work" data-section="work">Work</a>
+                <a href="#" class="goals" data-section="goals">Goals</a>
+                <a href="#" class="plans" data-section="plans">Today's Plans</a>
+            </div>
+        </div>
+    </div>
+    <div class="main-content" id="home-content">
+        <h1>Listify</h1>
+        <div class="editable-container" contenteditable="true" placeholder="You can put here your reminders for yourself today."></div>
+        <div class="recently-visited">
+            <h2>Recently visited</h2>
+            <div class="cards">
+                <a href="#life-content" class="card" data-section="life">Life</a>
+                <a href="#work-content" class="card" data-section="work">Work</a>
+                <a href="#goals-content" class="card" data-section="goals">Goals</a>
+                <a href="#plans-content" class="card" data-section="today-plans">Today Plans</a>
+            </div>            
+        </div>
+    </div>
+    <div class="main-content" id="dashboard-content" style="display: none;">
+        <h1>Dashboard</h1>
+        <p>Welcome to your Dashboard.</p>
+        <div class="dashboard-cards-container"></div>
+    </div>
+    <div class="main-content" id="life-content" style="display: none;">
+        <h1>Life</h1>
+        <p>Welcome to your Life section.</p>
+        <div class="editable-container" contenteditable="true" placeholder="Type your text here..."></div>
+        <button class="add-to-list-button">Add to List</button>
+        <h1 class="section-heading">Life | To-do lists</h1>
+        <ul id="list-container"></ul>
+        <h1 id="completed-heading" class="completed-heading">Completed</h1>
+        <ul id="completed-container"></ul>
+    </div>
+    <div class="main-content" id="work-content" style="display: none;">
+        <h1>Work</h1>
+        <p>Welcome to your Work section.</p>
+        <div class="editable-container" contenteditable="true" placeholder="Type your text here..."></div>
+        <button class="add-to-list-button">Add to List</button>
+        <h1 class="section-heading">Work | To-do lists</h1>
+        <ul id="list-container"></ul>
+        <h1 id="completed-heading" class="completed-heading">Completed</h1>
+        <ul id="completed-container"></ul>
+    </div>
+    <div class="main-content" id="goals-content" style="display: none;">
+        <h1>Goals</h1>
+        <p>Welcome to your Goals section.</p>
+        <div class="editable-container" contenteditable="true" placeholder="Type your text here..."></div>
+        <button class="add-to-list-button">Add to List</button>
+        <h1 class="section-heading">Goals | To-do lists</h1>
+        <ul id="list-container"></ul>
+        <h1 id="completed-heading" class="completed-heading">Completed</h1>
+        <ul id="completed-container"></ul>
+    </div>
+    <div class="main-content" id="plans-content" style="display: none;">
+        <h1>Today's Plans</h1>
+        <p>Welcome to your Today's Plans section.</p>
+        <div class="editable-container" contenteditable="true" placeholder="Type your text here..."></div>
+        <button class="add-to-list-button">Add to List</button>
+        <h1 class="section-heading">Today's Plans | To-do lists</h1>
+        <ul id="list-container"></ul>
+        <h1 id="completed-heading" class="completed-heading">Completed</h1>
+        <ul id="completed-container"></ul>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

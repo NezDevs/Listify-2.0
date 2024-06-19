@@ -1,0 +1,389 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size: 13px;
+}
+
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    display: flex;
+    flex-direction: row;
+    min-height: 100vh;
+}
+
+.btn {
+    background-color: #fff;
+    color: #000;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    z-index: 1000; /* Ensure it stays above other content */
+}
+
+.btn:hover {
+    background-color: #0056b3;
+}
+
+.sidebar {
+    width: 200px;
+    background-color: #f4f4f4;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    transition: transform 0.3s ease;
+    z-index: 900; /* Ensure the sidebar is below the button */
+}
+
+.sidebar.hidden {
+    transform: translateX(-100%);
+}
+
+.menu a {
+    display: block;
+    margin-top: 40px;
+    padding: 10px;
+    color: #333;
+    text-decoration: none;
+    border-radius: 4px;
+}
+
+.private a, .others a {
+    display: block;
+    padding: 10px;
+    color: #333;
+    text-decoration: none;
+    border-radius: 4px;
+}
+
+.menu a:hover, .private a:hover, .others a:hover {
+    background-color: #ddd;
+}
+
+.private, .others {
+    margin-top: 20px;
+}
+
+.private h3 {
+    margin-bottom: 10px;
+}
+
+.main-content {
+    flex-grow: 1;
+    padding: 20px;
+    margin-left: 220px; /* Default margin when sidebar is visible */
+    transition: margin-left 0.3s ease;
+}
+
+.sidebar.closed ~ #home-content,
+.sidebar.closed ~ #dashboard-content,
+.sidebar.closed ~ #life-content,
+.sidebar.closed ~ #work-content,
+.sidebar.closed ~ #goals-content,
+.sidebar.closed ~ #plans-content,
+.sidebar.closed ~ #trash-content {
+    margin-left: 220px; /* Adjusted margin when sidebar is hidden */
+}
+
+.main-content h1 {
+    text-align: center;
+    font-style: italic;
+}
+
+.main-content.full-width {
+    margin-left: 0;
+}
+
+.main-content h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.toggle-btn {
+    position: fixed; /* Fixed position to ensure it's always visible */
+    top: 20px;
+    left: 220px; /* Adjust this based on sidebar width */
+    z-index: 1000; /* Ensure it stays above other content */
+    transition: left 0.3s ease;
+}
+
+#toggle-sidebar {
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    z-index: 1000; /* Ensures it's above other content */
+    background-color: #ffffff;
+    padding: 10px;
+    border: 1px solid #ccc;
+    cursor: pointer;
+}
+
+
+.toggle-btn.hidden {
+    left: 20px;
+}
+
+/* Additional styling for other elements */
+.recently-visited, .upcoming-events {
+    margin-bottom: 20px;
+}
+
+.dashboard-cards-container {
+    margin-top: 30px;
+}
+
+.dashboard-card {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    padding: 20px;
+    margin: 10px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.dashboard-card:hover {
+    background-color: #f0f0f0;
+}
+
+.recently-visited h2, .upcoming-events h2 {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.cards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.card {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    padding: 10px;
+    width: calc(33.33% - 20px);
+    text-align: center;
+    border-radius: 4px;
+    cursor: default;
+}
+
+.drag-over {
+    background-color: #f0f0f0;
+}
+
+.folder {
+    padding-left: 20px;
+}
+
+.card span {
+    display: block;
+    margin-top: 5px;
+    font-size: 12px;
+    color: #999;
+}
+
+.events {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    padding: 20px;
+    border-radius: 4px;
+}
+
+.editable-container::before {
+    content: attr(placeholder);
+    position: absolute;
+    color: #aaa;
+    pointer-events: none;
+    transition: opacity 0.2s ease-in-out;
+    opacity: 1;
+}
+
+.editable-container.has-content::before {
+    opacity: 0;
+}
+
+.editable-container {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    padding: 10px;
+    margin: 20px 0;
+    min-height: 100px;
+    border-radius: 4px;
+    outline: none;
+}
+
+.add-to-list-button {
+    display: block;
+    float: right;
+    margin-top: 5px;
+    padding: 5px 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.add-to-list-button:hover {
+    background-color: #0056b3;
+}
+
+#item-list {
+    margin-top: 20px;
+    list-style-type: none;
+}
+
+#item-list li {
+    margin-bottom: 5px;
+}
+
+.event p {
+    margin-bottom: 10px;
+}
+
+#home-content .add-to-list-button,
+#calendar-content .add-to-list-button,
+#trash-content .add-to-list-button {
+    display: none;
+}
+
+.event a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.event-details {
+    margin-top: 20px;
+}
+
+.event-details p {
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.detail {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.detail span {
+    font-weight: bold;
+}
+
+#list-container, #completed-container {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+    gap: 1rem;
+    justify-content: left;
+}
+
+#list-container li, #completed-container li {
+    font-weight: 700;
+    list-style: none;
+    font-size: 15px;
+    text-transform: capitalize;
+    max-width: 100%;
+    overflow-wrap: break-word;
+    white-space: nowrap;
+    padding: 10px 30px;
+    user-select: none;
+    border-radius: 5rem;
+    cursor: pointer;
+    position: relative;
+    background: rgba(0, 0, 0, 0.05);
+    display: flex;
+    align-items: center;
+    transition: .2s ease-in-out;
+}
+
+#list-container li:hover, #completed-container li:hover {
+    background: rgb(139, 133, 133);
+}
+
+#list-container li.checked, #completed-container li.checked {
+    color: rgb(24, 21, 21);
+    text-decoration: line-through;
+}
+
+#list-container li span, #completed-container li span {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 40px;
+    height: 40px;
+    font-size: 1.4rem;
+    color: rgb(24, 21, 21);
+    line-height: 40px;
+    text-align: center;
+}
+
+#list-container li span:hover, #completed-container li span:hover {
+    border-radius: 30px;
+    background: rgb(0, 0, 0);
+    color: white;
+}
+
+#list-container li i, #completed-container li i {
+    pointer-events: none;
+}
+
+#list-container li input[type="checkbox"], #completed-container li input[type="checkbox"] {
+    margin-right: 10px;
+}
+
+#list-container li button, #completed-container li button {
+    margin-left: auto;
+    padding: 5px 10px;
+    background-color: red;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#list-container li button:hover, #completed-container li button:hover {
+    background-color: darkred;
+}
+
+@media screen and (max-width: 768px) {
+    body {
+        flex-direction: column;
+    }
+
+    .sidebar {
+        width: 100%;
+    }
+
+    .main-content {
+        width: 100%;
+        margin-left: 0;
+    }
+
+    .folder {
+        padding-left: 10px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .cards {
+        flex-direction: column;
+    }
+
+    .card {
+        width: 100%;
+    }
+}
