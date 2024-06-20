@@ -198,11 +198,9 @@ document.addEventListener('DOMContentLoaded', () => {
         return storedData[sectionId] ? storedData[sectionId][key] : null;
     }
 
-    // Initialize last edited dates
     ['life', 'work', 'goals', 'plans'].forEach(sectionId => {
         const lastEditedDate = loadFromLocalStorage(sectionId, 'lastEditedDate');
         if (lastEditedDate) {
-            // Update UI with last edited date
             const card = document.querySelector(`.cards .card[data-section="${sectionId}"]`);
             if (card) {
                 card.querySelector('span').textContent = lastEditedDate;
