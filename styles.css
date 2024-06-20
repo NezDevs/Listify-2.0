@@ -26,7 +26,7 @@ body {
     padding: 10px;
     cursor: pointer;
     transition: background-color 0.3s ease;
-    z-index: 1000; /* Ensure it stays above other content */
+    z-index: 1000;
 }
 
 .btn:hover {
@@ -44,7 +44,7 @@ body {
     bottom: 0;
     left: 0;
     transition: transform 0.3s ease;
-    z-index: 900; /* Ensure the sidebar is below the button */
+    z-index: 900;
 }
 
 .sidebar.hidden {
@@ -83,7 +83,7 @@ body {
 .main-content {
     flex-grow: 1;
     padding: 20px;
-    margin-left: 220px; /* Default margin when sidebar is visible */
+    margin-left: 220px;
     transition: margin-left 0.3s ease;
 }
 
@@ -94,7 +94,7 @@ body {
 .sidebar.closed ~ #goals-content,
 .sidebar.closed ~ #plans-content,
 .sidebar.closed ~ #trash-content {
-    margin-left: 220px; /* Adjusted margin when sidebar is hidden */
+    margin-left: 220px;
 }
 
 .main-content h1 {
@@ -112,10 +112,10 @@ body {
 }
 
 .toggle-btn {
-    position: fixed; /* Fixed position to ensure it's always visible */
+    position: fixed;
     top: 20px;
-    left: 220px; /* Adjust this based on sidebar width */
-    z-index: 1000; /* Ensure it stays above other content */
+    left: 220px;
+    z-index: 1000;
     transition: left 0.3s ease;
 }
 
@@ -123,7 +123,7 @@ body {
     position: fixed;
     top: 10px;
     left: 10px;
-    z-index: 1000; /* Ensures it's above other content */
+    z-index: 1000;
     background-color: #ffffff;
     padding: 10px;
     border: 1px solid #ccc;
